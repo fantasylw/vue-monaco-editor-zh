@@ -1,18 +1,19 @@
 /*eslint-disable */
 module.exports = {
- 
-  load(srcPath = 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min',callback) {
+
+  load(srcPath = '', callback) {
     var requireConfig = {
-      paths: { vs: `${srcPath}/vs` },
+      paths: { vs: '/static/vs' },
       'vs/nls': {
         availableLanguages: {
           '*': 'zh-cn'
         }
       }
     }
+
     var loaderUrl = `${requireConfig.paths.vs}/loader.js`;
-    var context=window;
-    var onGotAmdLoader = function() {
+    var context = window;
+    var onGotAmdLoader = function () {
       if (context.__REACT_MONACO_EDITOR_LOADER_ISPENDING__) {
         // Do not use webpack
         if (requireConfig.paths && requireConfig.paths.vs) {
@@ -20,13 +21,13 @@ module.exports = {
         }
       }
       // Load monaco
-      context['require'](['vs/editor/editor.main'], function() {
-        try{
-           callback();
-         }catch(err){
+      context['require'](['vs/editor/editor.main'], function () {
+        try {
+          callback();
+        } catch (err) {
 
-         }
-       
+        }
+
       });
       // Call the delayed callbacks when AMD loader has been loaded
       if (context.__REACT_MONACO_EDITOR_LOADER_ISPENDING__) {
