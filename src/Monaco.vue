@@ -29,19 +29,29 @@ module.exports = {
   },
   computed: {
     style() {
+      // 自适应
       const { width, height } = this;
-      const fixedWidth = width.toString().indexOf('%') !== -1 ? width : `${width}px`;
-      const fixedHeight = height.toString().indexOf('%') !== -1 ? height : `${height}px`;
+      if(typeof width == "number"){
+        width = `${width}px`
+      }
+      if(typeof height == "number"){
+        width = `${height}px`
+      }
+      if(this.editor){
+        // 高度变更将刷新编辑器布局
+        this.editor.layout()
+      }
       return {
-        width: fixedWidth,
-        height: fixedHeight,
+        width: width,
+        height: height,
       };
     },
     editorOptions() {
       return Object.assign({}, this.defaults, this.options, {
         value: this.code,
         language: this.language,
-        theme: this.theme
+        theme: this.theme,
+        automaticLayout: true
       });
     }
   },
@@ -52,7 +62,7 @@ module.exports = {
         roundedSelection: false,
         readOnly: false,
         cursorStyle: 'line',
-        automaticLayout: false,
+        automaticLayout: true,
         glyphMargin: true
       }
     }

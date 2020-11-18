@@ -68,6 +68,7 @@ defaults: {
     height="600"
     language="typescript"
     :code="code"
+    :theme="vs"
     :editorOptions="options"
     @mounted="onMounted"
     @codeChange="onCodeChange"
