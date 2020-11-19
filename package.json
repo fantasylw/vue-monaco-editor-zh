@@ -1,7 +1,7 @@
 {
   "name": "vue-monaco-editor-zh",
   "description": "vue-Monaco-Editor 中文版,自适应布局,中文菜单",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "author": "lw",
   "keywords": [
     "monaco",
