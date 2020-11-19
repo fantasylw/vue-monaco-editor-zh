@@ -39,8 +39,17 @@ module.exports = {
       }
       if(this.editor){
         // 高度变更将刷新编辑器布局
-        this.editor.layout()
-      }
+        if (this.editorLayoutEmitter) {
+            this.editorLayoutEmitter();
+        } else {
+            this.editorLayoutEmitter = debounce(
+                function() {
+                    this.editor.layout()
+                },
+                1500
+            );
+            this.editorLayoutEmitter();
+        }
       return {
         width: width,
         height: height,
