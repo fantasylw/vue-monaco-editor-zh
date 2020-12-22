@@ -50,11 +50,11 @@ module.exports = {
             );
             this.editorLayoutEmitter();
         }
-        return {
+      }
+      return {
           width: width,
           height: height,
-        };
-      }
+        }
     },
     editorOptions() {
       return Object.assign({}, this.defaults, this.options, {
@@ -142,7 +142,6 @@ module.exports = {
         this.editor.dispose();
       }
     }
-  }
   }
 }
 </script>
