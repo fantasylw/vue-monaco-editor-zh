@@ -30,12 +30,13 @@ module.exports = {
   computed: {
     style() {
       // 自适应
-      const { width, height } = this;
+      var { width, height } = this;
       if(typeof width == "number"){
+        // 如果传递的长宽是数值, 强制转像素 否则保留原样 如 1080px 90% 90vh
         width = `${width}px`
       }
       if(typeof height == "number"){
-        width = `${height}px`
+        height = `${height}px`
       }
       if(this.editor){
         // 高度变更将刷新编辑器布局
